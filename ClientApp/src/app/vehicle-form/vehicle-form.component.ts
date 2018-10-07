@@ -1,3 +1,4 @@
+import { MakeService } from './../make.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehicleFormComponent implements OnInit {
 
-  constructor() { }
+  makes: any = [];
+  models: any[];
+  vehicle: any = {};
+
+  constructor(public makeservice: MakeService) { }
 
   ngOnInit() {
+    this.makeservice.getMakes()
+      .subscribe(makes =>
+        this.makes = makes
+      );
   }
+
+  onMakeChange() {
+
+    // tslint:disable-next-line:triple-equals
+    const selectedMake = this.makes.find(m => m.id == this.vehicle.make);
+    console.log(selectedMake);
+    this.models = selectedMake ? selectedMake.models : [];
+
+  }
+
 
 }

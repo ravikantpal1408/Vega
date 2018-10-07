@@ -25,11 +25,12 @@ namespace vega.Models
         [StringLength(255)]
         public string ContactPhone { get; set; }
         public DateTime LastUpdate { get; set; }
-        public ICollection<VehicleFeature> Feature { get; set; }
+        public ICollection<VehicleFeature> Features { get; set; }
+
 
         public Vehicle()
         {
-            Feature = new Collection<VehicleFeature>();
+            Features = new Collection<VehicleFeature>();
         }
 
     }

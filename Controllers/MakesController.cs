@@ -17,12 +17,14 @@ namespace vega.Controllers
         public MakesController(VegaDbContext _context, IMapper mapper)
         {
             this._context = _context;
+
             this.mapper = mapper;
         }
         [HttpGet("api/makes")]
         public async Task<IEnumerable<MakeResource>> GetMakes()
         {
             var makes = await _context.Makes.Include(m => m.Models).ToListAsync();
+
             return mapper.Map<List<Make>, List<MakeResource>>(makes);
         }
 

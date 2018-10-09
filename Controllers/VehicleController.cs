@@ -20,6 +20,7 @@ namespace vega.Controllers
             this.mapper = mapper;
         }
 
+        // Insert Vehicle
         [HttpPost]
         public async Task<IActionResult> CreateVehicle([FromBody] VehicleResource vehicleResource)
         {
@@ -37,6 +38,7 @@ namespace vega.Controllers
             return Ok(result);
         }
 
+        // Update Vehicle 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateVehicle(int id, [FromBody] VehicleResource vehicleResource)
         {

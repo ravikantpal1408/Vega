@@ -1,6 +1,7 @@
 import { VehicleService } from './../vehicle.service';
 import { MakeService } from './../make.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-vehicle-form',
@@ -17,7 +18,11 @@ export class VehicleFormComponent implements OnInit {
     contact: {}
   };
 
-  constructor(public makeservice: MakeService, public vehicleService: VehicleService) { }
+  constructor(
+    public makeservice: MakeService,
+    public vehicleService: VehicleService,
+    private toastyService: ToastyService
+  ) { }
 
   ngOnInit() {
     this.makeservice.getMakes()
@@ -34,7 +39,7 @@ export class VehicleFormComponent implements OnInit {
 
     // tslint:disable-next-line:triple-equals
     const selectedMake = this.makes.find(m => m.id == this.vehicle.makeId);
-    console.log(selectedMake);
+    // console.log(selectedMake);
     this.models = selectedMake ? selectedMake.models : [];
     delete this.vehicle.modelId;
 
@@ -53,7 +58,20 @@ export class VehicleFormComponent implements OnInit {
 
   submit() {
     this.vehicleService.create(this.vehicle).
-      subscribe(x => console.log(x));
+      subscribe(
+        x => console.log(x),
+        error => {
+          // tslint:disable-next-line:triple-equals
+          if (error.status == 400) {
+            this.toastyService.error({
+              title: 'Error',
+              msg: 'An Unwxpected Error Happened ',
+              theme: 'default',
+              showClose: true,
+              timeout: 5000
+            });
+          }
+        });
   }
 
 }

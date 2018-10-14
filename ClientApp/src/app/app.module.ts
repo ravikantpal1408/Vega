@@ -38,7 +38,8 @@ import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'vehicles/new', component: VehicleFormComponent },
-      { path: '**', redirectTo: 'home' },
+      { path: 'vehicles/:id', component: VehicleFormComponent },
+      { path: '**', redirectTo: 'home' }
     ])
   ],
   providers: [

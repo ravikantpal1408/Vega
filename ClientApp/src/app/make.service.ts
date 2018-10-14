@@ -12,12 +12,12 @@ export class MakeService {
   }
 
   getMakes() {
-    return this.http.get('api/makes')
+    return this.http.get('https://localhost:5001/api/makes')
       .map(res => res);
   }
 
   getFeatures() {
-    return this.http.get('api/features')
+    return this.http.get('https://localhost:5001/api/features')
       .map(res => res);
   }
 

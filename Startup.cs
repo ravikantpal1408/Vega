@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using vega.Models;
 using AutoMapper;
-using Microsoft.AspNetCore.SpaServices.Webpack;
+// using Microsoft.AspNetCore.SpaServices.Webpack;
 
 namespace vega
 {

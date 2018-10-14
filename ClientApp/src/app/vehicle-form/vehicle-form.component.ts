@@ -1,3 +1,4 @@
+import { VehicleService } from './../vehicle.service';
 import { MakeService } from './../make.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,10 +13,11 @@ export class VehicleFormComponent implements OnInit {
   models: any[];
   features: any = [];
   vehicle: any = {
-    features: []
+    features: [],
+    contact: {}
   };
 
-  constructor(public makeservice: MakeService) { }
+  constructor(public makeservice: MakeService, public vehicleService: VehicleService) { }
 
   ngOnInit() {
     this.makeservice.getMakes()
@@ -41,11 +43,17 @@ export class VehicleFormComponent implements OnInit {
     if ($event.target.checked) {
       this.vehicle.features.push(featureId);
     }
+    // tslint:disable-next-line:one-line
     else {
       const index = this.vehicle.features.indexOf(featureId);
       this.vehicle.features.splice(index, 1);
     }
 
+  }
+
+  submit() {
+    this.vehicleService.create(this.vehicle).
+      subscribe(x => console.log(x));
   }
 
 }

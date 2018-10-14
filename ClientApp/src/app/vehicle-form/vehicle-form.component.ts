@@ -1,7 +1,8 @@
 import { VehicleService } from './../vehicle.service';
 import { MakeService } from './../make.service';
 import { Component, OnInit } from '@angular/core';
-import { ToastyService } from 'ng2-toasty';
+import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty';
+
 
 @Component({
   selector: 'app-vehicle-form',
@@ -21,7 +22,8 @@ export class VehicleFormComponent implements OnInit {
   constructor(
     public makeservice: MakeService,
     public vehicleService: VehicleService,
-    private toastyService: ToastyService
+    public toastyService: ToastyService
+    // public toastyConfig: ToastyConfig
   ) { }
 
   ngOnInit() {
@@ -64,14 +66,45 @@ export class VehicleFormComponent implements OnInit {
           // tslint:disable-next-line:triple-equals
           if (error.status == 400) {
             this.toastyService.error({
-              title: 'Error',
-              msg: 'An Unwxpected Error Happened ',
-              theme: 'default',
+              title: 'Toast It!',
+              msg: 'Mmmm, tasties...',
               showClose: true,
-              timeout: 5000
+              timeout: 5000,
+              theme: 'bootstrap'
             });
           }
         });
+    // this.toastyConfig({
+    //   position: "top-right"
+    // });
+
   }
+
+
+  addToast() {
+    // Just add default Toast with title only
+    this.toastyService.default('Hi there');
+    // Or create the instance of ToastOptions
+    const toastOptions: ToastOptions = {
+      title: 'My title',
+      msg: 'The message',
+      showClose: true,
+      timeout: 5000,
+      theme: 'default',
+      onAdd: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added!');
+      },
+      onRemove: function (toast: ToastData) {
+        console.log('Toast ' + toast.id + ' has been removed!');
+      }
+    };
+    // Add see all possible types in one shot
+    this.toastyService.info(toastOptions);
+    this.toastyService.success(toastOptions);
+    this.toastyService.wait(toastOptions);
+    this.toastyService.error(toastOptions);
+    this.toastyService.warning(toastOptions);
+  }
+
 
 }

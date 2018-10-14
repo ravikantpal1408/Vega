@@ -16,4 +16,9 @@ export class MakeService {
       .map(res => res);
   }
 
+  getFeatures() {
+    return this.http.get('api/features')
+      .map(res => res);
+  }
+
 }

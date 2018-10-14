@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using vega.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.SpaServices.Webpack;
 
 namespace vega
 {
@@ -51,6 +52,10 @@ namespace vega
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                // app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                // {
+                //     HotModuleReplacement = true
+                // });
             }
             else
             {

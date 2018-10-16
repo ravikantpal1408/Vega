@@ -23,14 +23,19 @@
             <span class='glyphicon glyphicon-education'></span> Counter
           </a>
         </li>
-        <li [routerLinkActive]='["link-active"]'>
+        <!-- <li [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-th-list'></span> Fetch data
           </a>
-        </li>
+        </li> -->
         <li [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/vehicles/new"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-plus'></span> New Vehicle
+          </a>
+        </li>
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/vehicles/all"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> List all Vehicle
           </a>
         </li>
       </ul>

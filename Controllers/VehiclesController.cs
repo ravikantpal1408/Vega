@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -102,6 +103,34 @@ namespace vega.Controllers
                 return NotFound();
 
             var vehicleResource = mapper.Map<Vehicle, VehicleResource>(vehicle);
+
+            return Ok(vehicleResource);
+        }
+
+
+        [HttpGet]
+        [Route("/api/vehicles/all")]
+        public async Task<IActionResult> GetVehicleAll()
+        {
+            var vehicle = await context.Vehicles.FromSql(@"SELECT Vehicles.id,
+            Makes.Id as Make,
+            Vehicles.ModelId , 
+            Vehicles.IsRegistered ,
+            Vehicles.ContactEmail,
+            Vehicles.ContactName,
+            Vehicles.ContactPhone,
+            Models.Name as model ,
+            Makes.Name as MakerName,
+            Vehicles.LastUpdate
+            
+            FROM Vehicles INNER JOIN Models 
+            ON Models.Id = Vehicles.ModelId INNER JOIN Makes 
+            ON Makes.Id = Models.MakeId").ToListAsync();
+
+            if (vehicle == null)
+                return NotFound();
+
+            var vehicleResource = mapper.Map<List<Vehicle>, List<VehicleResource>>(vehicle);
 
             return Ok(vehicleResource);
         }

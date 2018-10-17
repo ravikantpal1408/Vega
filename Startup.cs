@@ -8,6 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using vega.Models;
 using AutoMapper;
+using vega.Core;
+using vega.Persistence;
+using Microsoft.Extensions.Logging;
 // using Microsoft.AspNetCore.SpaServices.Webpack;
 
 namespace vega
@@ -31,6 +34,9 @@ namespace vega
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddAutoMapper();
 
             services.AddDbContext<VegaDbContext>(options =>
@@ -49,6 +55,8 @@ namespace vega
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            // loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            // LoggerFactory.AddDebug();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

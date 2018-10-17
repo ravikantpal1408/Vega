@@ -1,0 +1,3 @@
+{
+    "docker.defaultRegistryPath": "mcr.microsoft.com/mssql"
+}

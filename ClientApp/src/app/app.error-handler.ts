@@ -6,8 +6,12 @@ export class AppErrorHandler implements ErrorHandler {
 
 
   constructor(
+    // ZgZone Helps to create Angular zone
     private ngZone: NgZone,
-    @Inject(ToastyService) public toastyService: ToastyService) { /* Constructor Block */ }
+
+    @Inject(ToastyService) public toastyService: ToastyService) {
+    /* Constructor Block */
+  }
 
   handleError(error: any): void {
 

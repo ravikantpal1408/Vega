@@ -4,7 +4,7 @@ import { ToastyService } from 'ng2-toasty';
 import { SaveVehicle, Vehicle } from '../models/vehicle';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'underscore';
-import 'rxjs/add/Observable/forkJoin';
+
 
 @Component({
   selector: 'app-vehicle-form',

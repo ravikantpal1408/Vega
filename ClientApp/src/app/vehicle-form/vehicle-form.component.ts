@@ -135,9 +135,7 @@ export class VehicleFormComponent implements OnInit {
             timeout: 5000
           });
         });
-
     }
-
   }
 
   delete() {

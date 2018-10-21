@@ -9,7 +9,7 @@ import { ToastyService } from 'ng2-toasty';
 })
 export class VehicleListComponent implements OnInit {
 
-  vehicle: any = [];
+  vehicle: any = {};
 
   constructor(
     private vehicleService: VehicleService,
@@ -17,6 +17,12 @@ export class VehicleListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.vehicleService.getAllVehicle()
+      .subscribe(x => {
+        console.log(x);
+        this.vehicle = x;
+        console.log('x => ', this.vehicle);
+      });
   }
 
 }

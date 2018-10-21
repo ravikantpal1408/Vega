@@ -1,5 +1,4 @@
-import { AppErrorHandler } from './app.error-handler';
-import { ErrorHandler } from '@angular/core';
+
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -7,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ToastyModule } from 'ng2-toasty';
+// import { UniversalModule } from 'angular2-universal';
 
 // Services
 import { VehicleService } from './vehicle.service';
@@ -19,6 +19,8 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
+import { AppErrorHandler } from './app.error-handler';
+import { ErrorHandler } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -34,14 +36,16 @@ import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    // UniversalModule,
     ToastyModule.forRoot(),
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'vehicles/all', component: VehicleListComponent },
+      { path: '', redirectTo: 'vehicles', pathMatch: 'full' },
       { path: 'vehicles/new', component: VehicleFormComponent },
       { path: 'vehicles/:id', component: VehicleFormComponent },
+      { path: 'vehicles', component: VehicleListComponent },
+      { path: 'home', component: HomeComponent },
+      { path: 'counter', component: CounterComponent },
+      { path: 'fetch-data', component: FetchDataComponent },
       { path: '**', redirectTo: 'home' }
     ])
   ],

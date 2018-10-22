@@ -21,6 +21,7 @@ import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { AppErrorHandler } from './app.error-handler';
 import { ErrorHandler } from '@angular/core';
+import { PaginationComponent } from './shared/pagination.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ErrorHandler } from '@angular/core';
     CounterComponent,
     FetchDataComponent,
     VehicleFormComponent,
-    VehicleListComponent
+    VehicleListComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

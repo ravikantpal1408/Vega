@@ -109,6 +109,7 @@ export class VehicleFormComponent implements OnInit {
   }
 
   submit() {
+
     if (this.vehicle.id) {
       // Update Vehicle
       this.vehicleService.update(this.vehicle)
@@ -119,11 +120,16 @@ export class VehicleFormComponent implements OnInit {
             msg: 'The vehicle was sucessfully updated.',
             theme: 'bootstrap',
             showClose: true,
-            timeout: 5000
+            timeout: 5000,
+            onRemove: function () {
+              console.log('Toast has been removed!');
+            }
           });
+          this.router.navigate(['/allVehicles']);
         });
     } else {
       // Create New Vehicle
+      this.vehicle.id = 0;
       this.vehicleService.create(this.vehicle)
         .subscribe(x => {
           console.log('creating new vehicle');
@@ -134,6 +140,7 @@ export class VehicleFormComponent implements OnInit {
             showClose: true,
             timeout: 5000
           });
+          this.router.navigate(['/allVehicles']);
         });
     }
   }

@@ -1,6 +1,6 @@
 import { VehicleService } from './../vehicle.service';
 import { Component, OnInit } from '@angular/core';
-import { ToastyService } from 'ng2-toasty';
+
 
 @Component({
   selector: 'app-vehicle-list',
@@ -18,32 +18,42 @@ export class VehicleListComponent implements OnInit {
   };
   columns = [
     { title: 'Id' },
-    { title: 'Contact Name', key: 'contactName', isSortable: true },
     { title: 'Make', key: 'make', isSortable: true },
     { title: 'Model', key: 'model', isSortable: true },
+    { title: 'Contact Name', key: 'contactName', isSortable: true },
     {}
   ];
 
 
 
   constructor(
-    private vehicleService: VehicleService,
-    private toastyService: ToastyService
-  ) { }
+    private vehicleService: VehicleService
+  ) {
+    console.log('first');
+    this.populateVehicles();
+
+
+  }
 
   ngOnInit() {
 
     this.vehicleService.getMakes()
-      .subscribe(makes => this.makes = makes);
+      .subscribe(makes => {
+        this.makes = makes;
 
-    this.populateVehicles();
+      });
+    console.log('second');
   }
+
+
 
   private populateVehicles() {
     this.vehicleService.getVehicles(this.query)
-      .subscribe(result => this.queryResult = result);
+      .subscribe(result => {
+        console.log('queryResult', result);
+        this.queryResult = result;
+      });
   }
-
   onFilterChange() {
     this.query.page = 1;
     this.populateVehicles();

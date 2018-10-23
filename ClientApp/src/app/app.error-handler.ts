@@ -14,6 +14,7 @@ export class AppErrorHandler implements ErrorHandler {
   }
 
   handleError(error: any): void {
+    console.log(error);
 
     this.ngZone.run(() => {
       this.toastyService.error({

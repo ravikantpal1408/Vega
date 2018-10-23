@@ -41,13 +41,21 @@ import { PaginationComponent } from './shared/pagination.component';
     // UniversalModule,
     ToastyModule.forRoot(),
     RouterModule.forRoot([
+
       { path: '', redirectTo: 'vehicles', pathMatch: 'full' },
+      // Create New Vehicles
       { path: 'vehicles/new', component: VehicleFormComponent },
+      // Diplayes vehicle of selected Id
       { path: 'vehicles/:id', component: VehicleFormComponent },
+      // Displays all vehicles
       { path: 'allVehicles', component: VehicleListComponent },
+      // Home page
       { path: 'home', component: HomeComponent },
+      // Counter Page
       { path: 'counter', component: CounterComponent },
+      // Show Temperature Page
       { path: 'fetch-data', component: FetchDataComponent },
+      // Redirects to Home page for wrong Urls
       { path: '**', redirectTo: 'home' }
     ])
   ],

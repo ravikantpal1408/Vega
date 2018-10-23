@@ -39,15 +39,21 @@ namespace vega.Controllers
             var vehicle = await repository.GetVehicle(vehicleId, includeRelated: false);
             if (vehicle == null)
             {
+                // Checking if Vehicle Id Exists 
                 return NotFound();
             }
+            // Getting Folder Path wwwRoot - this is public directory
             var uploadFolderPath = Path.Combine(host.WebRootPath, "uploads");
             if (!Directory.Exists(uploadFolderPath))
             {
+                // If Folder path is not defined then Create a Directory 
                 Directory.CreateDirectory(uploadFolderPath);
             }
+            // generating file name 
             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            // saving file to folder path 
             var filePath = Path.Combine(uploadFolderPath, fileName);
+
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
@@ -56,9 +62,13 @@ namespace vega.Controllers
             {
                 FileName = fileName
             };
+
             vehicle.Photos.Add(photo);
+
             await unitOfWork.CompleteAsync();
+
             return Ok(mapper.Map<Photo, PhotoResource>(photo));
+
         }
 
     }

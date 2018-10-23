@@ -41,7 +41,7 @@ export class VehicleFormComponent implements OnInit {
 
     // Reading Query String
     route.params.subscribe(p => {
-      this.vehicle.id = +p['id'] + 0;
+      this.vehicle.id = +p['id'] || 0;
     });
 
   }

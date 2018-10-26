@@ -19,14 +19,24 @@ namespace vega.Controllers
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
-        public PhotosController(IHostingEnvironment host,
+        public PhotosController(
+
+        IHostingEnvironment host,
+
          IVehicleRepository repository,
+
          IUnitOfWork unitOfWork,
-         IMapper mapper)
+
+         IMapper mapper
+
+         )
         {
             this.host = host;
+
             this.repository = repository;
+
             this.unitOfWork = unitOfWork;
+
             this.mapper = mapper;
         }
 

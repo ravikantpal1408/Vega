@@ -6,6 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ToastyModule } from 'ng2-toasty';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatTabsModule } from '@angular/material/tabs';
+
 // import { UniversalModule } from 'angular2-universal';
 
 // Services
@@ -22,6 +26,7 @@ import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { AppErrorHandler } from './app.error-handler';
 import { ErrorHandler } from '@angular/core';
 import { PaginationComponent } from './shared/pagination.component';
+import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
 
 @NgModule({
   declarations: [
@@ -33,13 +38,17 @@ import { PaginationComponent } from './shared/pagination.component';
     VehicleFormComponent,
     VehicleListComponent,
     PaginationComponent,
+    ViewVehicleComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    // UniversalModule,
+    BrowserAnimationsModule,
+    MatButtonModule, MatCheckboxModule,
+    MatTabsModule,
     ToastyModule.forRoot(),
+
     RouterModule.forRoot([
 
       { path: '', redirectTo: 'vehicles', pathMatch: 'full' },
@@ -47,6 +56,8 @@ import { PaginationComponent } from './shared/pagination.component';
       { path: 'vehicles/new', component: VehicleFormComponent },
       // Diplayes vehicle of selected Id
       { path: 'vehicles/:id', component: VehicleFormComponent },
+
+      { path: 'veiw-vehicle/:id', component: ViewVehicleComponent },
       // Displays all vehicles
       { path: 'allVehicles', component: VehicleListComponent },
       // Home page

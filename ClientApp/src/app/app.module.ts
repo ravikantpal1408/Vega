@@ -1,3 +1,4 @@
+import { PhotoService } from './photo.service';
 
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
@@ -72,6 +73,7 @@ import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
   ],
   providers: [
     MakeService,
+    PhotoService,
     VehicleService,
     { provide: ErrorHandler, useClass: AppErrorHandler }
   ],

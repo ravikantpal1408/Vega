@@ -1,13 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using vega.Controllers.Resources;
 using vega.Core;
 using vega.Core.Models;
+using vega.Models;
 
 namespace vega.Controllers
 {
@@ -18,16 +22,19 @@ namespace vega.Controllers
         private readonly IVehicleRepository repository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
+        private readonly VegaDbContext context;
 
         public PhotosController(
 
+        VegaDbContext context,
+
         IHostingEnvironment host,
 
-         IVehicleRepository repository,
+        IVehicleRepository repository,
 
-         IUnitOfWork unitOfWork,
+        IUnitOfWork unitOfWork,
 
-         IMapper mapper
+        IMapper mapper
 
          )
         {
@@ -38,8 +45,16 @@ namespace vega.Controllers
             this.unitOfWork = unitOfWork;
 
             this.mapper = mapper;
+
+            this.context = context;
         }
 
+        public async Task<IEnumerable<PhotoResource>> getPhotos(int vehicleId)
+        {
+            var photos = await context.Photos.Where(x => x.VehicleId == vehicleId).ToListAsync();
+            return mapper.Map<IEnumerable<Photo>, IEnumerable<PhotoResource>>(photos);
+
+        }
 
 
         // /api/vehicles/1/Photos

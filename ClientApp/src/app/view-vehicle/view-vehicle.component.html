@@ -45,6 +45,16 @@
     </div>
 
   </mat-tab>
-  <mat-tab label="Vehicle Photo"> Content 2 </mat-tab>
+  <mat-tab label="Vehicle Photo">
+    <br>
+    <div class="panel panel-warning">
+      <div class="panel-heading"><strong>Select Photo</strong></div>
+      <div class="panel-body">
+        <input type="file" (change)="uploadPhoto()" #fileInput>
+        <br>
+        <img *ngFor="let photo of photos" src="/uploads/{{photo.fileName}}" class="img-thumbnail">
+      </div>
+    </div>
+  </mat-tab>
 
 </mat-tab-group>

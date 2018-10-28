@@ -1,8 +1,8 @@
-import { PhotoService } from './photo.service';
 
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgProgressModule } from 'ngx-progressbar';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -10,12 +10,14 @@ import { ToastyModule } from 'ng2-toasty';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material/tabs';
-
-// import { UniversalModule } from 'angular2-universal';
+import { HttpModule } from '@angular/http';
 
 // Services
-import { VehicleService } from './vehicle.service';
-import { MakeService } from './make.service';
+import { PhotoService } from './services/photo.service';
+import { VehicleService } from './services/vehicle.service';
+import { MakeService } from './services/make.service';
+
+
 // Components
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -29,6 +31,7 @@ import { ErrorHandler } from '@angular/core';
 import { PaginationComponent } from './shared/pagination.component';
 import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,14 +43,18 @@ import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
     VehicleListComponent,
     PaginationComponent,
     ViewVehicleComponent,
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    HttpModule,
     FormsModule,
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule,
+    NgProgressModule,
     MatTabsModule,
+
     ToastyModule.forRoot(),
 
     RouterModule.forRoot([
@@ -75,7 +82,9 @@ import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
     MakeService,
     PhotoService,
     VehicleService,
-    { provide: ErrorHandler, useClass: AppErrorHandler }
+
+    { provide: ErrorHandler, useClass: AppErrorHandler },
+
   ],
   bootstrap: [AppComponent]
 })

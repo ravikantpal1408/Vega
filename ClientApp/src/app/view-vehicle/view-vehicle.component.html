@@ -49,6 +49,8 @@
       <div class="panel-heading"><strong>Select Photo</strong></div>
       <div class="panel-body">
         <input type="file" (change)="uploadPhoto()" #fileInput>
+        <ng-progress [positionUsing]="'marginLeft'" [direction]="'leftToRightIncreased'" [color]="'#4286f4'"
+          [trickleSpeed]="500" [thick]="true" [ease]="'easeInSine'"></ng-progress>
         <br>
         <img style="width: 100px;height: 100px;" *ngFor="let photo of photos" src="/uploads/{{photo.fileName}}" class="img-thumbnail">
       </div>

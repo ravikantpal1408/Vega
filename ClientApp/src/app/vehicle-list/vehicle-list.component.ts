@@ -1,4 +1,4 @@
-import { VehicleService } from './../vehicle.service';
+import { VehicleService } from '../services/vehicle.service';
 import { Component, OnInit } from '@angular/core';
 
 

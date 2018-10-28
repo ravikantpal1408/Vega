@@ -49,6 +49,7 @@ namespace vega.Controllers
             this.context = context;
         }
 
+        [HttpGet]
         public async Task<IEnumerable<PhotoResource>> getPhotos(int vehicleId)
         {
             var photos = await context.Photos.Where(x => x.VehicleId == vehicleId).ToListAsync();

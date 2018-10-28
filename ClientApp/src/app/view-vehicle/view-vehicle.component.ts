@@ -51,15 +51,14 @@ export class ViewVehicleComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.progressService.start();
+    this.progressService.start();
     this.photoService.getPhotos(this.vehicle.id)
       .subscribe(photos => {
 
         this.progressService.done();
 
         this.photos = photos;
-      }
-      );
+      });
 
 
 

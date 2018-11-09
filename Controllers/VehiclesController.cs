@@ -20,7 +20,6 @@ namespace vega.Controllers
 
         public VehiclesController(IMapper mapper, IVehicleRepository repository, IUnitOfWork unitOfWork)
         {
-            // Constructor
             this.unitOfWork = unitOfWork;
             this.repository = repository;
             this.mapper = mapper;

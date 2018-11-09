@@ -19,25 +19,6 @@ namespace vega.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("vega.Core.Models.Photo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasMaxLength(255);
-
-                    b.Property<int?>("VehicleId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("VehicleId");
-
-                    b.ToTable("Photos");
-                });
-
             modelBuilder.Entity("vega.Models.Feature", b =>
                 {
                     b.Property<int>("Id")
@@ -128,13 +109,6 @@ namespace vega.Migrations
                     b.HasIndex("FeatureId");
 
                     b.ToTable("VehicleFeatures");
-                });
-
-            modelBuilder.Entity("vega.Core.Models.Photo", b =>
-                {
-                    b.HasOne("vega.Models.Vehicle")
-                        .WithMany("Photos")
-                        .HasForeignKey("VehicleId");
                 });
 
             modelBuilder.Entity("vega.Models.Model", b =>

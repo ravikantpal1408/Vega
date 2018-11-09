@@ -12,7 +12,7 @@ export class VehicleListComponent implements OnInit {
   vehicle: any = {};
 
   queryResult: Object;
-  makes: Object;
+  makes: any;
   query: any = {
     pageSize: this.PAGE_SIZE
   };

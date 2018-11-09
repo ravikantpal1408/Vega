@@ -34,6 +34,16 @@ namespace vega
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MyCorsPolicy", builder => builder
+                    .WithOrigins("https://my.web.com", "http://localhost:5001", "http://localhost:8080")
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .WithHeaders("Accept", "Content-Type", "Origin", "X-My-Header"));
+            });
+
+
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -53,8 +63,11 @@ namespace vega
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseCors("MyCorsPolicy");
+
+            app.UseMvc();
             // loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             // LoggerFactory.AddDebug();
             if (env.IsDevelopment())

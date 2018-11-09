@@ -1,4 +1,4 @@
-import { Contact } from './vehicle';
+import { Contact, KeyValuePair } from './vehicle';
 
 export interface KeyValuePair {
   id: number;
@@ -25,6 +25,17 @@ export interface SaveVehicle {
   id: number;
   modelId: number;
   makeId: number;
+  isRegistered: boolean;
+  features: number[];
+  contact: Contact;
+}
+
+export interface ViewVehicles {
+  id: number;
+  modelId: number;
+  modelName: string;
+  makeId: number;
+  makeName: string;
   isRegistered: boolean;
   features: number[];
   contact: Contact;

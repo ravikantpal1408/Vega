@@ -1,0 +1,62 @@
+<div class="row" style="padding-right: 20px;">
+  <mat-tab-group>
+    <mat-tab label="Vehicle Info">
+
+      <br>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h4>{{ vehicle.contact?.name }}</h4>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <h4><u>Vehicle Make :</u></h4>
+            <label for="">{{ vehicle.make?.name }}</label>
+          </div>
+
+          <div class="form-group">
+            <h4><u>Vehicle Model :</u></h4>
+            <label for="">{{ vehicle.model?.name }}</label>
+          </div>
+
+          <div class="form-group well">
+            <h4><u>Vehicle Features :</u></h4>
+
+            <div *ngFor="let f of vehicle?.features">
+              <label for=""> * {{ f.name }}</label>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <h4><u>Is Registered:</u></h4>
+            <label for=""> {{ vehicle?.isRegistered ? 'Yes' : 'No' }}</label>
+          </div>
+
+          <div class="form-group">
+            <h4><u>Owner Contact Phone:</u></h4>
+            <label for="">{{vehicle.contact.phone}}</label>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <a [routerLink]="['/vehicles/', vehicle.id]" class="btn btn-warning">Edit</a> |
+          <button class="btn btn-danger" (click)="delete()">Delete</button>
+        </div>
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Vehicle Photo">
+      <br>
+      <div class="panel panel-warning">
+        <div class="panel-heading"><strong>Select Photo</strong></div>
+        <div class="panel-body">
+          <input type="file" (change)="uploadPhoto()" #fileInput>
+          <ng-progress [positionUsing]="'marginLeft'" [direction]="'leftToRightIncreased'" [color]="'#4286f4'"
+            [trickleSpeed]="500" [thick]="true" [ease]="'easeInSine'"></ng-progress>
+          <br>
+          <img style="width: 100px;height: 100px;" *ngFor="let photo of photos" src="/uploads/{{photo.fileName}}" class="img-thumbnail">
+        </div>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

@@ -11,7 +11,7 @@ export class VehicleListComponent implements OnInit {
   private readonly PAGE_SIZE = 3;
   vehicle: any = {};
 
-  queryResult: Object;
+  queryResult: any;
   makes: any;
   query: any = {
     pageSize: this.PAGE_SIZE
